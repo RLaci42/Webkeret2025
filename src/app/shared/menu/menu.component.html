@@ -1,0 +1,19 @@
+<mat-nav-list>
+    @for (category of shopCategories; track $index) {
+        <a mat-list-item routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/shop', category]" (click)="closeMenu()">
+            <span matListItemTitle>{{ category | shopCategory }}</span>
+        </a>
+    }
+
+    <a mat-list-item routerLinkActive="selected" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/cart']"><span matListItemTitle>Kosár</span></a>
+
+    @if (!isLoggedIn) {
+        <a mat-list-item routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/login']" (click)="closeMenu()"><span matListItemTitle>Belépés</span></a>
+        <a mat-list-item routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/register']" (click)="closeMenu()"><span matListItemTitle>Regisztráció</span></a>
+    }
+    
+    @if (isLoggedIn) {
+        <a mat-list-item routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/profile']" (click)="closeMenu()"><span matListItemTitle>Profil</span></a>
+        <a mat-list-item (click)="logout()"><span matListItemTitle>Kijelentkezés</span></a>
+    }
+</mat-nav-list>

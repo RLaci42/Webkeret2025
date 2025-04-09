@@ -1,0 +1,82 @@
+.container {
+    width: 75%;
+    margin: auto;
+}
+
+h3,
+.shipping-info-label {
+    color: #023e8a;
+}
+
+form {
+    display: flex !important;
+    flex-direction: column;
+    padding-left: 15%;
+
+    mat-form-field {
+        width: 40%;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 15px;
+    }
+}
+
+.summary-container {
+    display: flex;
+    justify-content: space-between;
+
+    .shipping-info,
+    .item-info {
+        width: 50%;
+    }
+
+    .shipping-info {
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+
+            div {
+                width: 50%;
+            }
+        }
+
+        button {
+            margin-top: 15px;
+        }
+    }
+
+    .item-details {
+        display: flex;
+    }
+
+
+    img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+    }
+}
+
+.success {
+    h2,
+    p {
+        text-align: center;
+    }
+
+    h2 {
+        color: #28a745;
+    }
+
+    span {
+        color: #023e8a;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        width: 100%;
+    }
+}

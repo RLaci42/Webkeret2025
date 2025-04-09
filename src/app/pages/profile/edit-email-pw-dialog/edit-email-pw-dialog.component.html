@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Email és jelszó módosítása</h2>
+<p mat-dialog>A jelszót csak akkor kell megadni, ha módosítani kívánjuk.</p>
+<mat-dialog-content [formGroup]="form">
+    <div class="dialog-content">
+        <mat-form-field appearance="outline">
+            <mat-label>Email cím</mat-label>
+            <input matInput formControlName="email" type="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Új jelszó</mat-label>
+            <input matInput formControlName="password" type="password">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Új jelszó újra</mat-label>
+            <input matInput formControlName="rePassword" type="password">
+        </mat-form-field>
+
+        @if (form.errors?.['passwordsNotMatch'] && form.get('rePassword')?.touched) {
+            <mat-error>
+                A jelszavak nem egyeznek.
+            </mat-error>
+        }
+
+        <mat-dialog-actions align="end">
+            <button class="primary-button" mat-flat-button (click)="save()">Mentés</button>
+            <button class="secondary-button" mat-stroked-button (click)="cancel()">Mégse</button>
+        </mat-dialog-actions>
+    </div>
+</mat-dialog-content>

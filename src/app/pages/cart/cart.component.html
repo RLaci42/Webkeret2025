@@ -1,0 +1,43 @@
+<div class="cart-container">
+    <h2>Kosár</h2>
+
+    @if (cartItemCount) {
+        @for (item of cartItems; track $index) {
+            <div class="cart-item">
+                <img class="product-image" [src]="'images/' + item.product.image" alt="{{item.product.name}}">
+                <div class="item-details">
+                    <h4>{{ item.product.name }}</h4>
+                    <p>{{ (item.product.price * item.quantity) | price }}</p>
+
+                    <div class="controls">
+                        <button mat-icon-button (click)="decreaseQuantity(item)">
+                            <mat-icon>remove</mat-icon>
+                        </button>
+
+                        <input matInput type="number" [(ngModel)]="item.quantity" min="1">
+
+                        <button mat-icon-button (click)="increaseQuantity(item)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <button mat-icon-button (click)="removeItem(item)" class="delete-icon">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        }
+
+        <mat-divider></mat-divider>
+
+        <div class="total-container">
+            <h3>Összesen: {{ getTotalPrice() | price }}</h3>
+            <div class="total-controls">
+                <button mat-stroked-button (click)="emptyCart()" class="secondary-button">Kosár kiürítése</button>
+                <button mat-flat-button (click)="placeOrder()" class="primary-button">Rendelés leadása</button>
+            </div>
+        </div>
+    } @else {
+        <h2>Jelenleg üres a kosara.</h2>
+    }
+</div>

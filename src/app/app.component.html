@@ -1,0 +1,38 @@
+<div class="banner">
+  <img src="images/banner.jpg" alt="Banner" class="banner-img">
+</div>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <app-menu [shopCategories]="shopCategories" [sidenav]="sidenav" [isLoggedIn]="isLoggedIn" (logoutEvent)="logout()"></app-menu>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button class="menu-toggle-button" (click)="onToggleSidenav(sidenav)">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="menu">
+        <ul>
+          @for (category of shopCategories; track $index) {
+              <li routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}"><a [routerLink]="['/shop', category]">{{ category | shopCategory }}</a></li>
+          }
+      </ul>
+      <ul>
+        <li routerLinkActive="selected"><a [routerLink]="['/cart']"><mat-icon matBadge="{{ cartItemCount }}" matBadgeHidden="{{ cartItemCount === 0}}">shopping_cart</mat-icon></a></li>
+        @if (!isLoggedIn) {
+          <li routerLinkActive="selected"><a [routerLink]="['/register']">Regisztráció</a></li>
+          <li routerLinkActive="selected"><a [routerLink]="['/login']">Belépés</a></li>
+        }
+        @if (isLoggedIn) {
+          <li routerLinkActive="selected"><a [routerLink]="['/profile']">Profil</a></li>
+          <li><a href="#" (click)="$event.preventDefault(); logout()">Kijelentkezés</a></li>
+        }
+      </ul>
+      </div>
+    </mat-toolbar>
+
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,84 @@
+<h2 mat-dialog-title>Rendelés részletei</h2>
+    <div class="summary-container">
+
+        <div class="item-info">
+            @for (item of order.cartItems; track $index) {
+                <div class="item-details">
+                    <img [src]="'images/' + item.product.image" alt="{{ item.product.name }}" class="product-image">
+                    <div>
+                        <h4>{{ item.product.name }}</h4>
+                        <p>Mennyiség: {{ item.quantity }} db</p>
+                        <p>Összesen: {{ item.product.price * item.quantity | price }}</p>
+                    </div>
+                </div>
+            }
+
+            <div class="total">
+                <h3>Végösszeg: {{ getTotalPrice() | price }}</h3>
+            </div>
+        </div>
+
+        <div class="shipping-info">
+            <h4 class="shipping-info-label">Szállítási adatok</h4>
+            <div class="info-row">
+                <div>
+                    <p>Név:</p>
+                </div>
+                <div>
+                    <p>{{ order.shippingDetails.name.lastName + ' ' +  order.shippingDetails.name.firstName }}</p>
+                </div>
+            </div>
+            <div class="info-row">
+                <div>
+                    <p>Email:</p>
+                </div>
+                <div>
+                    <p>{{  order.shippingDetails.email }}</p>
+                </div>
+            </div>
+            <div class="info-row">
+                <div>
+                    <p>Telefonszám:</p>
+                </div>
+                <div>
+                    <p>{{  order.shippingDetails.phone }}</p>
+                </div>
+            </div>
+            <div class="info-row">
+                <div>
+                    <p>Irányítószám:</p>
+                </div>
+                <div>
+                    <p>{{  order.shippingDetails.address.postalCode }}</p>
+                </div>
+            </div>
+            <div class="info-row">
+                <div>
+                    <p>Település:</p>
+                </div>
+                <div>
+                    <p>{{  order.shippingDetails.address.city }}</p>
+                </div>
+            </div>
+            <div class="info-row">
+                <div>
+                    <p>Utca:</p>
+                </div>
+                <div>
+                    <p>{{  order.shippingDetails.address.street }}</p>
+                </div>
+            </div>
+            <div class="info-row">
+                <div>
+                    <p>Házszám:</p>
+                </div>
+                <div>
+                    <p>{{  order.shippingDetails.address.number }}</p>
+                </div>
+            </div>
+
+            <div>
+                <button mat-flat-button (click)="closeDialog()">Vissza</button>
+            </div>
+        </div>
+    </div>

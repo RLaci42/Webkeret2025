@@ -1,0 +1,14 @@
+mat-tab-group {
+    max-width: 50%;
+    margin: 40px auto;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 20px;
+}
+
+@media (max-width: 1140px) {
+    mat-tab-group {
+        max-width: 100%;
+    }
+}

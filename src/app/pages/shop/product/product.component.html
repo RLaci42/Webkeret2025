@@ -1,0 +1,55 @@
+<mat-card class="product-card">
+    <div class="image-container">
+        <img mat-card-image [src]="'images/' + product.image" alt="{{ product.name }}">
+    </div>
+
+    <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="product-detail-row">
+            <span>Gyártó:</span>
+            <span>{{ product.manufacturer }}</span>
+        </div>
+        @switch (product.type) {
+            @case ('fishingRod') {
+                <div class="product-detail-row">
+                    <span>Hossz:</span>
+                    <span>{{ product.length }} cm</span>
+                </div>
+                <div class="product-detail-row">
+                    <span>Dobósúly:</span>
+                    <span>{{ product.castingWeight }} g</span>
+                </div>
+            }
+            @case ('hook') {
+                <div class="product-detail-row">
+                    <span>Méret:</span>
+                    <span>{{ product.size }}</span>
+                </div>
+            }
+            @case ('reel') {
+                <div class="product-detail-row">
+                    <span>Méret:</span>
+                    <span>{{ product.size }}</span>
+                </div>
+                <div class="product-detail-row">
+                    <span>Zsinór:</span>
+                    <span>{{ product.lineType }}</span>
+                </div>
+            }
+        }
+
+        <div class="product-detail-row">
+            <span>Ár:</span>
+            <span>{{ product.price | price }}</span>
+        </div>
+
+        <p [ngClass]="product.available ? 'hidden' : ''" class="unavailable-product-text">A termék jelenleg nem elérhető.</p>
+    </mat-card-content>
+
+    <mat-card-actions [ngClass]="!product.available ? 'hidden' : ''">
+        <button mat-flat-button [ngClass]="!product.available ? 'hidden' : ''" appHoverHighlight (click)="addToCart(product)">Kosárba</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,16 @@
+.dialog-content {
+    padding: 10px;
+}
+
+.form-group {
+    display: flex;
+    gap: 10px;
+}
+
+mat-form-field {
+    margin-bottom: 25px;
+}
+
+button:disabled {
+    background-color: gray !important;
+}

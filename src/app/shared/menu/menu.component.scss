@@ -1,0 +1,21 @@
+a {
+    text-decoration: none;
+    color: white;
+    border-radius: 0 !important;
+}
+
+.mat-mdc-list-item-title {
+    color: white;
+}
+
+.mdc-list-item:focus:before {
+    opacity: 0 !important;
+}
+
+a:hover,
+a.selected {
+    background-color: #00b4d8;
+    .mat-mdc-list-item-title {
+        color: white;
+    }
+}

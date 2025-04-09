@@ -1,0 +1,9 @@
+<mat-tab-group>
+    <mat-tab label="Profil">
+        <app-details [user]="user" (onEditProfile)="editProfile()" (onEditEmailPw)="editEmailPw()" (onDeleteProfile)="deleteProfile()"></app-details>
+    </mat-tab>
+
+    <mat-tab label="Rendelések">
+        <app-orders [orders]="orders"></app-orders>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,7 @@
+<div class="shop-container">
+    <div class="product-grid">
+        @for (product of displayedProducts; track $index) {
+            <app-product [product]="product" (onAddToCart)="addToCart($event)"></app-product>
+        }
+    </div>
+</div>

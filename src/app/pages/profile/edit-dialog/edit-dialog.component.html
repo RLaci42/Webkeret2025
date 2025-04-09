@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Profil szerkesztése</h2>
+<mat-dialog-content [formGroup]="form">
+    <div class="dialog-content">
+
+        <div class="form-group" formGroupName="name">
+            <mat-form-field appearance="outline">
+                <mat-label>Vezetéknév</mat-label>
+                <input matInput formControlName="lastName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Keresztknév</mat-label>
+                <input matInput formControlName="firstName">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Telefonszám</mat-label>
+            <input matInput formControlName="phone">
+            @if (form.get('phone')?.hasError('pattern')) {
+                <mat-error>A telefonszám csak számokat tartalmazhat!</mat-error>
+            }
+        </mat-form-field>
+
+        <div formGroupName="address">
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Irányítószám</mat-label>
+                    <input matInput formControlName="postalCode">
+                    @if (form.get('phone')?.hasError('pattern')) {
+                        <mat-error>Az irányítószám csak számokat tartalmazhat!</mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Település</mat-label>
+                    <input matInput formControlName="city">
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Utca</mat-label>
+                    <input matInput formControlName="street">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Házszám</mat-label>
+                    <input matInput formControlName="number">
+                    @if (form.get('phone')?.hasError('pattern')) {
+                        <mat-error>A házszám csak számokat tartalmazhat!</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="primary-button" mat-flat-button (click)="save()" [disabled]="form.invalid">Mentés</button>
+    <button class="secondary-button" mat-stroked-button (click)="cancel()">Mégse</button>
+</mat-dialog-actions>

@@ -1,0 +1,35 @@
+<div class="register-container">
+    <h1>Regisztráció</h1>
+
+    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Jelszó</mat-label>
+                <input matInput type="password" formControlName="password">
+            <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Jelszó megerősítése</mat-label>
+                <input matInput type="password" formControlName="rePassword">
+            <mat-icon matSuffix>lock</mat-icon>
+        </mat-form-field>
+
+        @if (registerError) {
+            <div class="error-message">
+                {{ registerError }}
+            </div>
+        }
+
+        <div class="buttons-row">
+            <button mat-flat-button type="submit" class="primary-button">Regisztráció</button>
+            <button mat-stroked-button [routerLink]="['/login']" class="secondary-button">Van már fiókja?</button>
+        </div>
+    </form>
+
+</div>

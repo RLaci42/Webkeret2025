@@ -1,0 +1,75 @@
+<div class="profile-info">
+    <h2>Személyes adatok</h2>
+    
+    <div class="info-row">
+        <div>
+            <p>Név:</p>
+        </div>
+        <div>
+            @if (user?.name?.lastName && user?.name?.firstName) {
+                <p>{{ user?.name?.lastName + ' ' + user?.name?.firstName }}</p>
+            } @else {
+                <p>adat nincs megadva</p>
+            }
+        </div>
+    </div>
+    <div class="info-row">
+        <div>
+            <p>Email:</p>
+        </div>
+        <div>
+            <p>{{ user?.email }}</p>
+        </div>
+    </div>
+    <div class="info-row">
+        <div>
+            <p>Telefonszám:</p>
+        </div>
+        <div>
+            <p>{{ user?.phone || 'adat nincs megadva' }}</p>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <h3>Szállítási cím</h3>
+
+    <div class="info-row">
+        <div>
+            <p>Irányítószám:</p>
+        </div>
+        <div>
+            <p>{{ user?.address?.postalCode || 'adat nincs megadva' }}</p>
+        </div>
+    </div>
+    <div class="info-row">
+        <div>
+            <p>Település:</p>
+        </div>
+        <div>
+            <p>{{ user?.address?.city || 'adat nincs megadva' }}</p>
+        </div>
+    </div>
+    <div class="info-row">
+        <div>
+            <p>Utca:</p>
+        </div>
+        <div>
+            <p>{{ user?.address?.street || 'adat nincs megadva' }}</p>
+        </div>
+    </div>
+    <div class="info-row">
+        <div>
+            <p>Házszám:</p>
+        </div>
+        <div>
+            <p>{{ user?.address?.number || 'adat nincs megadva' }}</p>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button mat-flat-button class="primary-button" (click)="editProfile()">Adatok szerkesztése</button>
+        <button class="secondary-button" mat-stroked-button (click)="editEmailPw()">Email cím és jelszó módosítása</button>
+        <button mat-flat-button class="warning-button" (click)="deleteProfile()">Profil törlése</button>
+    </div>
+</div>

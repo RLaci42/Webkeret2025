@@ -1,0 +1,180 @@
+<div class="container">
+
+    @if (!orderPlaced) {
+        <h2>Rendelés leadása</h2>
+        <mat-horizontal-stepper [linear]="true" #stepper>
+
+            <mat-step label="Személyes adatok" [stepControl]="step1Form">
+                <form [formGroup]="step1Form">
+                    <h3>Adja meg a személyes adatait</h3>
+
+                    <div class="form-group" formGroupName="name">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Vezetéknév</mat-label>
+                            <input matInput formControlName="lastName">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Keresztnév</mat-label>
+                            <input matInput formControlName="firstName">
+                        </mat-form-field>
+                    </div>
+                    
+                    <div class="form-group">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Email cím</mat-label>
+                            <input matInput formControlName="email">
+                        </mat-form-field>
+        
+                        <mat-form-field appearance="fill">
+                            <mat-label>Telefonszám</mat-label>
+                            <input matInput formControlName="phone">
+                            @if (step1Form.get('phone')?.hasError('pattern')) {
+                                <mat-error>A telefonszám csak számokat tartalmazhat!</mat-error>
+                            }
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <button mat-flat-button class="primary-button" (click)="stepper.next()">Tovább</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step label="Szállítási adatok" [stepControl]="step2Form">
+                <form [formGroup]="step2Form">
+                    <h3>Adja meg a szállítási címét</h3>
+
+                    <div formGroupName="address">
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Irányítószám</mat-label>
+                                <input matInput formControlName="postalCode">
+                                @if (step2Form.get('phone')?.hasError('pattern')) {
+                                    <mat-error>Az irányítószám csak számokat tartalmazhat!</mat-error>
+                                }
+                            </mat-form-field>
+            
+                            <mat-form-field appearance="fill">
+                                <mat-label>Település</mat-label>
+                                <input matInput formControlName="city">
+                            </mat-form-field>
+                        </div>
+            
+                        <div class="form-group">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Utca</mat-label>
+                                <input matInput formControlName="street">
+                            </mat-form-field>
+            
+                            <mat-form-field appearance="fill">
+                                <mat-label>Házszám</mat-label>
+                                <input matInput formControlName="number">
+                                @if (step2Form.get('phone')?.hasError('pattern')) {
+                                    <mat-error>A házszám csak számokat tartalmazhat!</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button mat-flat-button class="primary-button" (click)="stepper.next()">Tovább</button>
+                    </div>
+                </form>
+            </mat-step>
+
+            <mat-step label="Rendelés véglegesítése">
+                <h3>Rendelés összegzése</h3>
+                <div class="summary-container">
+
+
+                    <div class="item-info">
+                        @for (item of cartItems; track $index) {
+                            <div class="item-details">
+                                <img [src]="'images/' + item.product.image" alt="{{ item.product.name }}" class="product-image">
+                                <div>
+                                    <h4>{{ item.product.name }}</h4>
+                                    <p>Mennyiség: {{ item.quantity }} db</p>
+                                    <p>Összesen: {{ item.product.price * item.quantity | price }}</p>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="total">
+                            <h3>Végösszeg: {{ getTotalPrice() | price }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="shipping-info">
+                        <h4 class="shipping-info-label">Szállítási adatok</h4>
+                        <div class="info-row">
+                            <div>
+                                <p>Név:</p>
+                            </div>
+                            <div>
+                                <p>{{ step1Form.value.name.lastName + ' ' + step1Form.value.name.firstName }}</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div>
+                                <p>Email:</p>
+                            </div>
+                            <div>
+                                <p>{{ step1Form.value.email }}</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div>
+                                <p>Telefonszám:</p>
+                            </div>
+                            <div>
+                                <p>{{ step1Form.value.phone }}</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div>
+                                <p>Irányítószám:</p>
+                            </div>
+                            <div>
+                                <p>{{ step2Form.value.address.postalCode }}</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div>
+                                <p>Település:</p>
+                            </div>
+                            <div>
+                                <p>{{ step2Form.value.address.city }}</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div>
+                                <p>Utca:</p>
+                            </div>
+                            <div>
+                                <p>{{ step2Form.value.address.street }}</p>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div>
+                                <p>Házszám:</p>
+                            </div>
+                            <div>
+                                <p>{{ step2Form.value.address.number }}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button mat-flat-button class="primary-button" (click)="placeOrder()">Rendelés leadása</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    } @else {
+        <div class="success">
+            <h2>Sikeres rendelés!</h2>
+            <p>Köszönjük a rendelését. Ha regisztrált felhasználóként rendelt, a rendelés részleteit megtalálja a profil oldal <span>Rendelések</span> fül alatt.</p>
+        </div>
+    }
+</div>

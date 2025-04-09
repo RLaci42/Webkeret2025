@@ -1,0 +1,74 @@
+::ng-deep .custom-dialog {
+    width: 50% !important;
+}
+
+h2 {
+    color: #023e8a !important;
+    font-weight: 500 !important;
+}
+
+h3,
+.shipping-info-label {
+    color: #023e8a;
+}
+
+.summary-container {
+    padding: 16px;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+    .item-info {
+        width: 50%;
+    }
+
+    .shipping-info {
+        width: 40%;
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+
+            div {
+                width: 50%;
+            }
+        }
+    }
+
+    .item-info {
+        width: 60%;
+    }
+
+    .item-details {
+        display: flex;
+    }
+
+    img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+    }
+
+    button {
+        background-color: #023e8a;
+    }
+}
+
+@media (max-width: 1800px) {
+    ::ng-deep .custom-dialog {
+        width: 60% !important;
+    }
+}
+
+@media (max-width: 1400px) {
+    ::ng-deep .custom-dialog {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 930px) {
+    ::ng-deep .custom-dialog {
+        width: 100% !important;
+    }
+}

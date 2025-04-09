@@ -1,0 +1,9 @@
+<div class="orders-container">
+    @for (order of orders; track $index) {
+        <mat-card (click)="openOrderDetails(order)">
+            <mat-card-header>
+                <mat-card-title>Rendelés azonosító: {{ order.orderNumber }}</mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    }
+</div>

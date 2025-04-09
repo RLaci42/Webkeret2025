@@ -1,0 +1,23 @@
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+        width: 50%;
+    }
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+}
+
+h2, h3 {
+    color: #023e8a;
+}
