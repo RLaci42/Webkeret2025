@@ -1,1 +1,1 @@
-# Webkeret2025
+# Választott projekt: horgászbolt webshop
